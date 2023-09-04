@@ -1,0 +1,8 @@
+node_modules/
+todos.db
+test.js
+model.js
+memory.md
+prompts/
+prompts.md
+examples/

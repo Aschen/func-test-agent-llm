@@ -1,0 +1,22 @@
+{
+  "name": "refactor-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest tests/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "acorn": "^8.10.0",
+    "acorn-walk": "^8.2.0",
+    "escodegen": "^2.1.0",
+    "fastify": "^4.22.2",
+    "jest": "^29.6.4",
+    "langchain": "^0.0.140",
+    "sqlite3": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
