@@ -1,4 +1,4 @@
-# API Agent
+# API Documentation and Functional Tests Agent
 
 This project is a collection of agents working together to write the documentation and functional tests of an API.
 
