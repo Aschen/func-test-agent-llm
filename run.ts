@@ -17,7 +17,7 @@ async function run() {
     // const documentation = new DocumentationAgent(entrypoint, walkCallStack.output.slice(1));
     // await documentation.run();
   
-    const writeTests = new WriteTestsAgent(readFileSync('./examples/fastify/doc/get-todos.md', 'utf-8'));
+    const writeTests = new WriteTestsAgent(readFileSync('./examples/fastify/doc/update-todos.md', 'utf-8'));
     await writeTests.run();
   // }
 }

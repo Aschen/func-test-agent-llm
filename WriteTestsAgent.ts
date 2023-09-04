@@ -21,7 +21,8 @@ You will be given the route documentation and you need to describe the test case
 Route documentation:
 {documentation}
 
-Each test case will be executed against an empty database and should be independent from other test cases.
+Each test case will be executed against an empty database.
+Each test case should be independent from other test cases and should not depend on the order of execution. (use beforeEach, afterEach hooks)
 Explain the progress of the test case: 
  - Preparation: what should be done to prepare the test case: should I create entities in the database before running the test? if yes, I need to delete them after the test
  - Execution: what should be done to run the test case against the API
@@ -56,11 +57,20 @@ Test case N: <description of the test case in one sentence>
     
     Generate a test file for a route using the provided route documentation and test cases description.  
 
-    First, you need to write the tests using Jest. Use the information from the {documentation} and {testCasesDescription} 
+    First, you need to write the tests using Jest. Use the information from the documentation and the test case specifications 
     to create a comprehensive set of tests that cover all possible scenarios and edge cases.
-    You need to use the native fetch API available to browsers to call the API endpoints.
-    Tests need to be written in {testsDir}.
 
+    API route documentation:
+    {documentation}
+
+    Test case specifications:
+    {testCaseDescription}
+
+    Tests need to be written in {testsDir}.
+    You need to use the native fetch API available to browsers to call the API endpoints.
+    Each test case will be executed against an empty database.
+    Each test case should be independent from other test cases.
+    Each test case should not depend on the order of execution. (use beforeEach, afterEach hooks for preparation and cleaning)    
     Each test case should be done only by using available API actions. 
     Available API action:
     - get all todos
@@ -68,8 +78,9 @@ Test case N: <description of the test case in one sentence>
     - update a todo
     - delete a todo
     If a test case is not possible to be done with the available API action or if you need to mock an API response then you should not do the test case.
-    You cannot import any external or local library, the test file must be self-contained.
+    You cannot require or import any external or local library, the test file must be self-contained.
     You will be given the current content of the test file.
+    
     Once you have written the tests, you need to run them. If a test fails, try to fix it.
     If you tests are present and passing for all edge case then you are done.
     Use the result of the last action to decide your next action.
@@ -101,7 +112,7 @@ Test case N: <description of the test case in one sentence>
     Remember to write clear and concise tests that accurately reflect the functionality of the route. If a test 
     fails, try to fix it.
   `,
-    inputVariables: ['documentation', 'testCasesDescription', 'testsDir', 'lastActionResult', 'testFileContent']
+    inputVariables: ['documentation', 'testCaseDescription', 'testsDir', 'lastActionResult', 'testFileContent']
   });
 
   private debug: boolean = true;
@@ -148,7 +159,7 @@ Test case N: <description of the test case in one sentence>
       const prompt = await this.writeTestsTemplate.format({
         documentation: this.documentation,
         lastActionResult: this.lastActionResult,
-        testCasesDescription: testCaseDescription,
+        testCaseDescription: testCaseDescription,
         testFileContent: this.readTestFile(),
         testsDir: this.testsDir,
       });
@@ -176,7 +187,7 @@ Test case N: <description of the test case in one sentence>
 
       case 'RUN_TESTS':
         const result = this.runTests();
-        
+
         if (result === 'All tests passed') {
           return true;
         }
