@@ -1,22 +1,22 @@
-# API Agent
+# API Documentation and Functional Tests Agent
 
 This project is a collection of agents working together to write the documentation and functional tests of an API.
 
 Here is the workflow:
- - [ExtractEntrypointsAgent](ExtractEntrypointsAgent.ts): read a file and extract the code of all API routes entrypoints 
- - for each entrypoint:
- -- [WalkCallTraceAgent](WalkCallTraceAgent.ts): retrieve all the functions involved in the API route
- -- [DocumentationAgent](DocumentationAgent.ts): write API documentation according to the code of the functions
- -- [WriteTestsAgent](WriteTestsAgent.ts): read the documentation of an API route and list all the possible test cases
- -- for each test case:
- --- describe what would be needed to test the current case (setup, teardown, test, matchers, etc)
- --- use the test description, route documentation and feedback from Jest runner (if any) to write the code
- --- run the code
- --- (repeat until all the tests pass)
+ - [ExtractEntrypointsAgent](ExtractEntrypointsAgent.ts): read a file and extract the code of all API routes entrypoints  
+ - for each entrypoint:  
+ -- [WalkCallTraceAgent](WalkCallTraceAgent.ts): retrieve all the functions involved in the API route  
+ -- [DocumentationAgent](DocumentationAgent.ts): write API documentation according to the code of the functions  
+ -- [WriteTestsAgent](WriteTestsAgent.ts): read the documentation of an API route and list all the possible test cases  
+ -- for each test case:  
+ --- describe what would be needed to test the current case (setup, teardown, test, matchers, etc)  
+ --- use the test description, route documentation and feedback from Jest runner (if any) to write the code  
+ --- run the code  
+ --- (repeat until all the tests pass)  
 
 The [WriteTestsAgent](WriteTestsAgent.ts) use a chain of 2 prompt.  
- - the first prompt is used to focus the LLM on writing the expected specifications for each test case
- - the second prompt focus the LLM attention on writing and correcting the corresponding test code (it analyze error message from Jest runner to fix the code iteratively)
+ - the first prompt is used to focus the LLM on writing the expected specifications for each test case  
+ - the second prompt focus the LLM attention on writing and correcting the corresponding test code (it analyze error message from Jest runner to fix the code iteratively)  
 
 ## Example
 
