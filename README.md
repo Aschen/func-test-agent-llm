@@ -5,7 +5,7 @@ This project is a collection of agents working together to write the documentati
 Here is the workflow:
  - [ExtractEntrypointsAgent](ExtractEntrypointsAgent.ts): read a file and extract the code of all API routes entrypoints  
  - for each entrypoint:  
- -- [WalkCallTraceAgent](WalkCallTraceAgent.ts): retrieve all the functions involved in the API route  
+ -- [WalkCallStackAgent](WalkCallStackAgent.ts): retrieve all the functions involved in the API route  
  -- [DocumentationAgent](DocumentationAgent.ts): write API documentation according to the code of the functions  
  -- [WriteTestsAgent](WriteTestsAgent.ts): read the documentation of an API route and list all the possible test cases  
  -- for each test case:  
